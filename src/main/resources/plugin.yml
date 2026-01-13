@@ -1,0 +1,40 @@
+name: EntityAIAsyncOptimizer
+version: 0.1bata
+main: com.example.plugin.MyLeavesPlugin
+api-version: 1.21
+description: Entity AI performance optimization plugin, supporting multi-core asynchronous processing to improve server performance
+author: Xiaoxin
+website: https://example.com
+api: ["1.21"]
+support-url: https://example.com/support
+depend: []
+softdepend: []
+loadbefore: []
+provides: []
+
+commands:
+  mycommand:
+    description: 示例命令
+    usage: /<command>
+    aliases: [mycmd]
+  aioptimize:
+    description: 控制实体AI性能优化
+    usage: /<command> [enable|disable|status]
+    aliases: [ao]
+    permission: myleavesplugin.command.aioptimize
+  aireload:
+    description: 重载实体AI优化插件配置
+    usage: /<command>
+    aliases: [aireload]
+    permission: myleavesplugin.command.reload
+
+permissions:
+  myleavesplugin.command.mycommand:
+    description: 使用示例命令的权限
+    default: true
+  myleavesplugin.command.aioptimize:
+    description: 控制AI性能优化的权限
+    default: op
+  myleavesplugin.command.reload:
+    description: 重载插件配置的权限
+    default: op

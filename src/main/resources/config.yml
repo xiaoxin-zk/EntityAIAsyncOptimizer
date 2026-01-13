@@ -1,0 +1,40 @@
+# 实体AI异步优化配置文件
+# 支持多核心异步处理，提升服务器性能
+
+ai-optimization:
+  # 是否启用AI性能优化
+  enabled: true
+  
+  # AI处理间隔（单位：tick，20tick = 1秒）
+  processing-interval: 2
+  
+  # 每个处理周期处理的最大实体数量（设为0表示无限制）
+  max-entities-per-tick: 0
+  
+  # 线程池大小（默认使用所有可用CPU核心，设为-1自动检测）
+  thread-pool-size: -1
+  
+  # 优化特定实体类型（对性能影响最大的实体）
+  optimized-entities:
+    # 猪灵（Piglin）- 特别针对您提到的性能问题
+    piglin:
+      enabled: true
+      # AI处理间隔倍数（1表示正常处理，2表示每隔一个tick处理一次）
+      interval-multiplier: 1
+    
+    # 猪灵蛮兵（Piglin Brute）
+    piglin-brute:
+      enabled: true
+      interval-multiplier: 1
+    
+    # 其他Mob实体
+    other-mobs:
+      enabled: true
+      interval-multiplier: 1
+
+# 调试选项
+debug:
+  # 是否启用调试日志
+  enabled: false
+  # 详细的性能统计
+  performance-stats: false

@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+}
+
+version = '0.1bata'
+group = 'xin.xiaoxin.entityai'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'SpigotMC'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        name = 'Sonatype'
+        url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+}
+
+dependencies {
+    // Spigot API依赖 (支持多个版本)
+    compileOnly 'org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT'
+    // 为兼容1.21.8和1.21.10等版本添加依赖
+    compileOnly 'org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT'
+    
+    // JetBrains注解依赖
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+    
+    // 测试依赖
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+
+
+test {
+    useJUnitPlatform()
+}
+
+// 设置Java兼容版本
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+// JAR任务配置 - 适用于Minecraft插件
+jar {
+    archiveBaseName.set('EntityAIAsyncOptimizer')
+    archiveVersion.set(version)
+    destinationDirectory.set(file("$rootDir/libs"))
+    
+    manifest {
+        attributes(
+            'Name': 'EntityAIAsyncOptimizer',
+            'Specification-Title': 'EntityAIAsyncOptimizer',
+            'Specification-Version': project.version,
+            'Specification-Vendor': 'Xiaoxin',
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'Xiaoxin',
+            'Main-Class': 'com.example.plugin.MyLeavesPlugin'
+        )
+    }
+}
